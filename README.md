@@ -2,7 +2,7 @@
 
 To run this script please install all requirements
 ```
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 and run command:
