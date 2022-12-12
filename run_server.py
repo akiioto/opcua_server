@@ -52,12 +52,12 @@ async def main():
 
     ekstruder_variable = await server.nodes.base_object_type.add_object_type(idx, "Ekstruder Value")
     await (await ekstruder_variable.add_variable(idx, "Ekstruder Value", [1000, 22.1, 54.2,])).set_modelling_rule(True)
-    ekstruder_array = await server.nodes.objects.add_object(idx, "Speed, Temp1, Temp2", ekstruder_variable)
+    ekstruder_array = await server.nodes.objects.add_object(idx, "Ekstruder Value", ekstruder_variable)
     ekstruder_array.set_writable()
 
     pistonrod = await server.nodes.base_object_type.add_object_type(idx, "Piston Rod")
     await (await pistonrod.add_variable(idx, "Piston Rod", False)).set_modelling_rule(True)
-    piston_value = await server.nodes.objects.add_object(idx, "Level Sensor", pistonrod)
+    piston_value = await server.nodes.objects.add_object(idx, "Piston Rod", pistonrod)
     piston_value.set_writable()
 
     pumppressure = await server.nodes.base_object_type.add_object_type(idx, "Pump Pressure")
