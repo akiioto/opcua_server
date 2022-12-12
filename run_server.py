@@ -23,7 +23,7 @@ async def main():
     server = Server()
     await server.init()
 
-    server.set_endpoint("opc.tcp://localhost:4840/freeopcua/server/")
+    server.set_endpoint("opc.tcp://0.0.0.0:4840/freeopcua/server/")
 
     # setup our own namespace, not really necessary but should as spec
     uri = "http://examples.freeopcua.github.io"
@@ -50,6 +50,25 @@ async def main():
     work_time = await server.nodes.objects.add_object(idx, "Work Time", time)
     work_time.set_writable()
 
+    ekstruder_variable = await server.nodes.base_object_type.add_object_type(idx, "Ekstruder Value")
+    await (await ekstruder_variable.add_variable(idx, "Ekstruder Value", [1000, 22.1, 54.2,])).set_modelling_rule(True)
+    ekstruder_array = await server.nodes.objects.add_object(idx, "Speed, Temp1, Temp2", ekstruder_variable)
+    ekstruder_array.set_writable()
+
+    pistonrod = await server.nodes.base_object_type.add_object_type(idx, "Piston Rod")
+    await (await pistonrod.add_variable(idx, "Piston Rod", False)).set_modelling_rule(True)
+    piston_value = await server.nodes.objects.add_object(idx, "Level Sensor", pistonrod)
+    piston_value.set_writable()
+
+    pumppressure = await server.nodes.base_object_type.add_object_type(idx, "Pump Pressure")
+    await (await pumppressure.add_variable(idx, "Pump Pressure", 800)).set_modelling_rule(True)
+    pump_pressure = await server.nodes.objects.add_object(idx, "Pump Pressure", pumppressure)
+    pump_pressure.set_writable()
+
+    actuatorposition = await server.nodes.base_object_type.add_object_type(idx, "Actuator Position")
+    await (await actuatorposition.add_variable(idx, "Actuator Position", 2)).set_modelling_rule(True)
+    actuator_position = await server.nodes.objects.add_object(idx, "Actuator Position", actuatorposition)
+    actuator_position.set_writable()
 
     # create directly some objects and variables
     myobj = await server.nodes.objects.add_object(idx, "MyObject")
