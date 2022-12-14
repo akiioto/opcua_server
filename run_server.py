@@ -30,35 +30,35 @@ async def main():
     idx = await server.register_namespace(uri)
 
     # create a new node type we can instantiate in our address space
-    levelsensor = await server.nodes.objects.add_object_type(idx, "LevelSensor")
+    levelsensor = await server.nodes.objects.add_oadd_objectject_type(idx, "LevelSensor")
     level_sensor = await levelsensor.add_variable(idx, "Level Sensor", False)
     await level_sensor.set_writable()
 
-    temperaturesensor = await server.nodes.objects.add_object_type(idx, "Temperature Sensor")
+    temperaturesensor = await server.nodes.objects.add_object(idx, "Temperature Sensor")
     temperature_sensor = await temperaturesensor.add_variable(idx, "Temperature Sensor", 52.4)
     await temperature_sensor.set_writable()
 
-    vectordata = await server.nodes.objects.add_object_type(idx, "Vector Data")
+    vectordata = await server.nodes.objects.add_object(idx, "Vector Data")
     vector_data = await vectordata.add_variable(idx, "Vector Data", [1.4, 1.2, 3.9, False])
     await vector_data.set_writable()
 
-    time = await server.nodes.objects.add_object_type(idx, "Time")
+    time = await server.nodes.objects.add_object(idx, "Time")
     work_time = await time.add_variable(idx, "Work Time", 31.99)
     await work_time.set_writable()
 
-    ekstruder_variable = await server.nodes.objects.add_object_type(idx, "Ekstruder Value")
+    ekstruder_variable = await server.nodes.objects.add_object(idx, "Ekstruder Value")
     ekstruder_array = await ekstruder_variable.add_variable(idx, "Ekstruder Value", [1.4, 1.2, 3.9])
     await ekstruder_array.set_writable()
 
-    pistonrod = await server.nodes.objects.add_object_type(idx, "Piston Rod")
+    pistonrod = await server.nodes.objects.add_object(idx, "Piston Rod")
     piston_value = await pistonrod.add_variable(idx, "Piston Rod", False)
     await piston_value.set_writable()
 
-    pumppressure = await server.nodes.objects.add_object_type(idx, "Pump Pressure")
+    pumppressure = await server.nodes.objects.add_object(idx, "Pump Pressure")
     pump_pressure = await pumppressure.add_variable(idx, "Pump Pressure", 800)
     await pump_pressure.set_writable()
 
-    actuatorposition = await server.nodes.objects.add_object_type(idx, "Actuator Position")
+    actuatorposition = await server.nodes.objects.add_object(idx, "Actuator Position")
     actuator_position = await actuatorposition.add_variable(idx, "Actuator Position", 2)
     await actuator_position.set_writable()
 
