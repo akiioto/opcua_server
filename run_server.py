@@ -30,7 +30,7 @@ async def main():
     idx = await server.register_namespace(uri)
 
     # create a new node type we can instantiate in our address space
-    levelsensor = await server.nodes.objects.add_oadd_objectject_type(idx, "LevelSensor")
+    levelsensor = await server.nodes.objects.add_object(idx, "LevelSensor")
     level_sensor = await levelsensor.add_variable(idx, "Level Sensor", False)
     await level_sensor.set_writable()
 
